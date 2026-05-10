@@ -1,11 +1,7 @@
 import { Button } from "@/src/components/ui";
 
 const page = () => {
-  return (
-    <div>
-      <p>hello world</p>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default page;

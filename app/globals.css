@@ -322,12 +322,7 @@ body {
 }
 
 a {
-  color: var(--text-link);
   text-decoration: none;
-}
-
-a:hover {
-  color: var(--text-link-hover);
 }
 
 /* =========================================================
