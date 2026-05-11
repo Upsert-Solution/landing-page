@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { fontBody, fontDisplay } from "@/src/lib/fonts";
-import { Header } from "@/src/components/layout";
+import { Footer, Header } from "@/src/components/layout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${fontBody.variable} ${fontDisplay.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col max-w-400 mx-auto pt-15">
+      <body className="min-h-screen flex flex-col">
         <Header />
-        <main className="px-4 sm:px-6 lg:px-8 pt-10">{children}</main>
+        <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-400 mx-auto flex-1 w-full">{children}</main>
+        <Footer />
       </body>
     </html>
   );

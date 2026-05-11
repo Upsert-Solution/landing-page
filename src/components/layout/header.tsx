@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <Flex
       as="header"
-      className="fixed top-5 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-full border border-neutral-50 bg-bg  px-5 py-3 shadow-[0_0_1000px_rgba(46,91,255,0.7)] backdrop-blur-[20px] md:w-[calc(100%-3rem)] lg:w-[calc(100%-4rem)] max-w-400"
+      className="fixed top-5 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-full border border-neutral-50 bg-bg/50  px-5 py-3 shadow-[0_0_1000px_rgba(46,91,255,0.7)] backdrop-blur-[20px] md:w-[calc(100%-3rem)] lg:w-[calc(100%-4rem)] max-w-400"
     >
       <Flex className="w-full items-center justify-between gap-4">
         <Link
