@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <Flex
       as="header"
-      className="fixed top-5 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-full border border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.82)] px-5 py-3 shadow-[0_16px_40px_rgba(46,91,255,0.16)] backdrop-blur-[14px] sm:w-[calc(100%-3rem)] lg:w-[calc(100%-4rem)] max-w-400"
+      className="fixed top-5 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-full border border-neutral-50 bg-bg  px-5 py-3 shadow-[0_0_1000px_rgba(46,91,255,0.7)] backdrop-blur-[20px] md:w-[calc(100%-3rem)] lg:w-[calc(100%-4rem)] max-w-400"
     >
       <Flex className="w-full items-center justify-between gap-4">
         <Link
@@ -43,7 +43,7 @@ const Header = () => {
         >
           Upsert Solution
         </Link>
-        <Flex className="mx-auto hidden sm:flex items-center" gap="sm">
+        <Flex className="mx-auto hidden md:flex items-center" gap="sm">
           {navItems.map((item) => (
             <Link key={item.path} href={item.path} className={linkClass(item.path)} aria-current={pathname === item.path ? "page" : undefined}>
               {item.name}
@@ -51,7 +51,7 @@ const Header = () => {
           ))}
         </Flex>
         <Flex className="items-center gap-3">
-          <Button size="sm" className="hidden sm:inline-flex">
+          <Button size="sm" className="hidden md:inline-flex">
             Get Started
           </Button>
           <Button
@@ -59,7 +59,7 @@ const Header = () => {
             aria-expanded={isOpen}
             onClick={() => setOpenForPath(isOpen ? null : pathname)}
             variant="outline"
-            className="relative h-10 w-10 border-none sm:hidden"
+            className="relative h-10 w-10 border-none md:hidden"
           >
             <span
               className={cn(
@@ -86,7 +86,7 @@ const Header = () => {
       <div
         id="site-menu"
         className={cn(
-          "pointer-events-none absolute left-1/2 top-full mt-4 w-full -translate-x-1/2 rounded-[28px] border border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.94)] p-4 shadow-[0_20px_50px_rgba(46,91,255,0.18)] backdrop-blur-lg transition-all duration-300 sm:hidden",
+          "pointer-events-none absolute left-1/2 top-full mt-4 w-full -translate-x-1/2 rounded-[28px] border border-neutral-50 bg-bg dark:bg-surface-base/80 p-4 shadow-[0_20px_50px_rgba(46,91,255,0.18)] backdrop-blur-lg transition-all duration-300 md:hidden",
           isOpen ? "pointer-events-auto translate-y-0 opacity-100" : "-translate-y-2 opacity-0",
         )}
       >

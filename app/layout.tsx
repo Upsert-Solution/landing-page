@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className={`${fontBody.variable} ${fontDisplay.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col max-w-400 mx-auto pt-15">
         <Header />
-        <main className="px-4 sm:px-6 lg:px-8">{children}</main>
+        <main className="px-4 sm:px-6 lg:px-8 pt-10">{children}</main>
       </body>
     </html>
   );

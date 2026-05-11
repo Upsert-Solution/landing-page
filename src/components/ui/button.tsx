@@ -6,11 +6,11 @@ type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
 type ButtonSize = "sm" | "md" | "lg";
 
 const baseClasses =
-  "cursor-pointer inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.01em] transition-all duration-200 focus-visible:outline-none focus-visible:shadow-[0_0_0_4px_rgba(0,64,224,0.25)] disabled:pointer-events-none disabled:opacity-60 disabled:bg-surface-mid disabled:text-text-muted disabled:border-border-muted disabled:shadow-none";
+  "cursor-pointer inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.01em] transition-all duration-200  focus-visible:outline-none focus-visible:shadow-[0_0_0_4px_rgba(0,64,224,0.25)] disabled:pointer-events-none disabled:opacity-60 disabled:bg-surface-mid disabled:text-text-muted disabled:border-border-muted disabled:shadow-none";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "text-white bg-gradient-to-br from-brand-primary to-brand-secondary shadow-[0_12px_30px_rgba(46,91,255,0.25)]  hover:shadow-[0_18px_40px_rgba(46,91,255,0.3)] active:translate-y-0 active:shadow-[0_10px_24px_rgba(46,91,255,0.25)]",
+    "text-white bg-gradient-to-br from-brand-primary to-brand-secondary shadow-[0_12px_30px_rgba(46,91,255,0.25)]  hover:-translate-y-0.5 hover:rotate-1 hover:shadow-[0_8px_16px_rgba(46,91,255,0.2),0_16px_32px_rgba(46,91,255,0.15),0_24px_48px_rgba(46,91,255,0.08)] active:translate-y-0 active:shadow-[0_10px_24px_rgba(46,91,255,0.25)]",
   secondary:
     "bg-transparent text-on-secondary border-2 border-brand-secondary shadow-[0_10px_24px_rgba(0,204,249,0.12)] hover:bg-canvas-accent active:bg-canvas-muted",
   ghost: "bg-transparent text-text-primary hover:bg-surface-low active:bg-surface-mid",
