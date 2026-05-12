@@ -31,7 +31,7 @@ const socialLinks: SocialLink[] = [
   {
     id: "facebook",
     label: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/upsertsolution",
   },
 
   {
@@ -42,12 +42,12 @@ const socialLinks: SocialLink[] = [
   {
     id: "linkedin",
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/company/upsert-solution/",
   },
   {
     id: "github",
     label: "GitHub",
-    href: "#",
+    href: "https://github.com/Upsert-Solution",
   },
 ];
 
@@ -55,7 +55,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Flex as="footer" className="bg-bg-muted w-full ">
+    <Flex as="footer" className="bg-bg-muted w-full mt-10">
       <Flex className="max-w-400 mx-auto w-full px-4 sm:px-6 lg:px-8 pt-10 pb-7">
         <Flex className="w-full flex-col gap-8">
           <Flex className="w-full flex-col items-start gap-8 md:flex-row md:items-start">
@@ -64,7 +64,7 @@ const Footer = () => {
               <h3 className="font-bold text-brand-primary tracking-[-0.02em] cursor-pointer hover:opacity-70 transition-all duration-200 ease-linear">
                 Upsert Solution
               </h3>
-              <p>Slogan of the company here</p>
+              <p>We don&apos;t just solve - we upsert.</p>
             </Flex>
 
             <Flex className="w-full flex-col items-start gap-8 sm:flex-row sm:flex-wrap md:w-auto md:gap-10 md:ml-auto">
@@ -105,7 +105,12 @@ const Footer = () => {
                 <p className="font-semibold text-neutral-400 text-sm">Follow Us</p>
                 <Flex className="gap-3 flex-wrap">
                   {socialLinks.map((social) => (
-                    <Link key={social.id} href={social.href} className="text-text-secondary hover:text-brand-primary transition-colors duration-200">
+                    <Link
+                      target="_blank"
+                      key={social.id}
+                      href={social.href}
+                      className="text-text-secondary hover:text-brand-primary transition-colors duration-200"
+                    >
                       <SocialIcon className="h-4 w-4" type={social.id} label={social.label} />
                     </Link>
                   ))}

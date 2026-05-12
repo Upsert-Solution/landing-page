@@ -1,7 +1,7 @@
-import { Button } from "@/src/components/ui";
+import Changes from "@/src/components/changes";
 
 const page = () => {
-  return <div></div>;
+  return <Changes />;
 };
 
 export default page;
