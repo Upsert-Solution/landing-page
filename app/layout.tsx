@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { fontBody, fontDisplay } from "@/src/lib/fonts";
-import { Footer, Header } from "@/src/components/layout";
+import { Footer, Header, ScrollToTop } from "@/src/components/layout";
 
 export const metadata: Metadata = {
   title: "Upsert Solution",
@@ -91,7 +91,8 @@ export default function RootLayout({
     <html lang="en" className={`${fontBody.variable} ${fontDisplay.variable} h-full antialiased`}>
       <body className="min-h-screen flex flex-col">
         <Header />
-        <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-400 mx-auto flex-1 w-full">{children}</main>
+        <ScrollToTop />
+        <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-340 mx-auto flex-1 w-full">{children}</main>
         <Footer />
       </body>
     </html>

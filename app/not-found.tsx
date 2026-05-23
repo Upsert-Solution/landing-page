@@ -27,10 +27,6 @@ const NotFound = () => {
     <Flex as="section" className="min-h-screen w-full justify-center lg:-mt-25 mb-25 lg:mb-0">
       <Flex className="flex-col-reverse lg:flex-row">
         <Flex className="flex-col items-start  gap-5">
-          <Flex className="gap-2 p-3 rounded-full border-white border bg-red-200 text-red-900">
-            <Info className="w-4 h-4" />
-            <p className="text-xs font-semibold">Error 404</p>
-          </Flex>
           <h1 className="text-8xl bg-linear-to-r from-brand-primary to-brand-secondary text-transparent bg-clip-text">Oops!</h1>
           <p className="text-4xl">This page is not found.</p>
           <p className="max-w-xl">
@@ -63,7 +59,7 @@ const NotFound = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Image src="/images/404_illustration_upsert.svg" width={500} height={500} alt="404 image" />
+        <Image src="/images/404_illustration_upsert.svg" width={450} height={500} alt="404 image" />
       </Flex>
     </Flex>
   );
