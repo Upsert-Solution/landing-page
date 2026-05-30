@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { AlertTriangle, CheckCircle2, Info, X, XCircle } from "lucide-react";
 
@@ -11,11 +12,11 @@ type ToastProps = ToastData & {
 };
 
 const variantShellClasses: Record<ToastVariant, string> = {
-  default: "border-white/80 bg-surface-base",
-  success: "border-[var(--status-success-border)] bg-[var(--status-success-bg)]",
-  warning: "border-[var(--status-warning-border)] bg-[var(--status-warning-bg)]",
-  error: "border-[var(--status-error-border)] bg-[var(--status-error-bg)]",
-  info: "border-[var(--status-info-border)] bg-[var(--status-info-bg)]",
+  default: "border-white/80 bg-white/75",
+  success: "border-[var(--status-success-border)] bg-[color-mix(in_srgb,var(--status-success-bg)_75%,transparent)]",
+  warning: "border-[var(--status-warning-border)] bg-[color-mix(in_srgb,var(--status-warning-bg)_75%,transparent)]",
+  error: "border-[var(--status-error-border)] bg-[color-mix(in_srgb,var(--status-error-bg)_75%,transparent)]",
+  info: "border-[var(--status-info-border)] bg-[color-mix(in_srgb,var(--status-info-bg)_75%,transparent)]",
 };
 
 const variantIconClasses: Record<ToastVariant, string> = {
@@ -57,15 +58,26 @@ const renderToastAction = (action?: ToastAction) => {
   );
 };
 
-export const Toast = ({ title, description, variant = "default", action, onDismiss }: ToastProps) => {
+export const Toast = ({ title, description, variant = "default", action, open = true, onDismiss }: ToastProps) => {
   const Icon = variantIcons[variant];
+  const prefersReducedMotion = useReducedMotion();
+  const isOpen = open !== false;
+  const transitionOpen = prefersReducedMotion ? { duration: 0 } : { duration: 0.22, ease: [0.16, 1, 0.3, 1] };
+  const transitionClosed = prefersReducedMotion ? { duration: 0 } : { duration: 0.18, ease: [0.16, 1, 0.3, 1] };
+  const variants = {
+    open: { opacity: 1, y: 0, scale: 1, transition: transitionOpen },
+    closed: { opacity: 0, y: -6, scale: 0.98, transition: transitionClosed },
+  };
 
   return (
-    <div
+    <motion.div
       role="status"
       aria-live="polite"
+      initial={prefersReducedMotion ? false : "closed"}
+      animate={isOpen ? "open" : "closed"}
+      variants={variants}
       className={cn(
-        "pointer-events-auto flex w-full max-w-sm gap-3 rounded-[24px] border p-4 shadow-[0_18px_40px_rgba(46,91,255,0.18)] backdrop-blur",
+        "pointer-events-auto flex w-full max-w-sm gap-3 rounded-3xl border p-4 shadow-[0_18px_40px_rgba(46,91,255,0.18)] backdrop-blur",
         variantShellClasses[variant],
       )}
     >
@@ -85,6 +97,6 @@ export const Toast = ({ title, description, variant = "default", action, onDismi
       >
         <X className="h-4 w-4" aria-hidden="true" />
       </button>
-    </div>
+    </motion.div>
   );
 };

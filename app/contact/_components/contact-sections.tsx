@@ -1,10 +1,12 @@
+"use client";
+
 import Image from "next/image";
 
-import type { ComponentPropsWithoutRef } from "react";
+import * as React from "react";
 import type { LucideIcon } from "lucide-react";
 import { Mail, Send } from "lucide-react";
 
-import { Button, CardContainer, Flex, Input, Select, Textarea } from "@/src/components/ui";
+import { Button, CardContainer, Flex, Input, Select, Textarea, toast } from "@/src/components/ui";
 import { cn } from "@/src/lib/utils";
 import { submitContact } from "../actions";
 
@@ -50,13 +52,13 @@ const contactTopics = [
   { value: "support", label: "Ongoing Support" },
 ];
 
-type FieldLabelProps = ComponentPropsWithoutRef<"label">;
+type FieldLabelProps = React.ComponentPropsWithoutRef<"label">;
 
 const FieldLabel = ({ className, ...props }: FieldLabelProps) => {
   return <label className={cn("flex flex-col gap-2 text-sm", className)} {...props} />;
 };
 
-type FieldLabelTextProps = ComponentPropsWithoutRef<"span">;
+type FieldLabelTextProps = React.ComponentPropsWithoutRef<"span">;
 
 const FieldLabelText = ({ className, ...props }: FieldLabelTextProps) => {
   return <span className={cn("type-label text-text-muted", className)} {...props} />;
@@ -103,6 +105,32 @@ export const InfoCardList = () => {
 };
 
 export const ContactForm = () => {
+  const [isPending, startTransition] = React.useTransition();
+
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    startTransition(async () => {
+      try {
+        await submitContact(formData);
+        toast({
+          title: "Message sent",
+          description: "We will get back within 24 hours.",
+          variant: "success",
+        });
+        form.reset();
+      } catch {
+        toast({
+          title: "Message failed",
+          description: "Something went wrong. Please try again.",
+          variant: "error",
+        });
+      }
+    });
+  };
+
   return (
     <CardContainer
       direction="col"
@@ -110,7 +138,7 @@ export const ContactForm = () => {
       gap="lg"
       className="w-full p-7 sm:p-8 border border-white/70 bg-[radial-gradient(120%_120%_at_100%_0%,rgba(150,216,255,0.35)_0%,rgba(235,237,255,0.7)_42%,rgba(255,255,255,0.95)_72%),radial-gradient(120%_120%_at_0%_100%,rgba(255,214,0,0.18)_0%,rgba(255,214,0,0)_55%)]"
     >
-      <form action={submitContact} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div className="grid gap-4 sm:grid-cols-2">
           <FieldLabel>
             <FieldLabelText>First Name</FieldLabelText>
@@ -146,8 +174,8 @@ export const ContactForm = () => {
           <Textarea name="message" placeholder="Tell us about your project..." required variant="glass" />
         </FieldLabel>
 
-        <Button type="submit" size="sm" className="gap-2 self-start">
-          Send Message
+        <Button type="submit" size="sm" className="gap-2 self-start" disabled={isPending}>
+          {isPending ? "Sending..." : "Send Message"}
           <Send className="h-4 w-4" aria-hidden="true" />
         </Button>
       </form>
