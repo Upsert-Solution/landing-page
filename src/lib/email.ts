@@ -94,7 +94,7 @@ export const sendContactEmail = async (payload: ContactPayload) => {
       text,
       html,
     });
-  } catch (error) {
+  } catch {
     throw new ContactError("Contact request failed.", 502);
   }
 };

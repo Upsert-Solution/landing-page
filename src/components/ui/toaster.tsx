@@ -41,7 +41,7 @@ export const Toaster = () => {
         return (
           <div
             key={position}
-            className={cn("pointer-events-none fixed z-50 flex w-[360px] max-w-[calc(100%-2rem)] flex-col gap-3", positionClasses[position])}
+            className={cn("pointer-events-none fixed z-50 flex w-90 max-w-[calc(100%-2rem)] flex-col gap-3", positionClasses[position])}
           >
             {items.map((toast) => (
               <Toast key={toast.id} {...toast} onDismiss={() => dismiss(toast.id)} />

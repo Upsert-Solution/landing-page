@@ -6,7 +6,7 @@ import { Button, Flex } from "@/src/components/ui";
 const HeroSection = () => {
   return (
     <Flex className="w-full flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16">
-      <Flex className="flex-col w-full lg:max-w-[520px] xl:max-w-[580px] items-center lg:items-start gap-5 text-center lg:text-left">
+      <Flex className="flex-col w-full lg:max-w-130 xl:max-w-145 items-center lg:items-start gap-5 text-center lg:text-left">
         <h1 className="text-balance text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.02em] leading-[1.05]">
           Websites That Turn Visitors Into <span className="text-brand-primary">Customers.</span>
         </h1>
@@ -20,7 +20,7 @@ const HeroSection = () => {
           </Button>
         </Flex>
       </Flex>
-      <div className="relative w-full max-w-[520px] sm:max-w-[560px] lg:max-w-[640px] xl:max-w-[720px] mx-auto lg:mx-0">
+      <div className="relative w-full max-w-130 sm:max-w-140 lg:max-w-160 xl:max-w-180 mx-auto lg:mx-0">
         <div className="pointer-events-none absolute -bottom-12 right-6 h-44 w-44 rounded-full bg-brand-secondary/35 blur-3xl" />
         <Image
           src="/images/hero_browser.svg"
