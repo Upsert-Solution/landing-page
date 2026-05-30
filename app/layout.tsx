@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { fontBody, fontDisplay } from "@/src/lib/fonts";
 import { Footer, Header, ScrollToTop } from "@/src/components/layout";
+import { Toaster } from "@/src/components/ui";
 
 export const metadata: Metadata = {
   title: "Upsert Solution",
@@ -94,6 +95,7 @@ export default function RootLayout({
         <ScrollToTop />
         <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-340 mx-auto flex-1 w-full">{children}</main>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

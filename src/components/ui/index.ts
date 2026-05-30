@@ -6,3 +6,6 @@ export { Select } from "./select";
 export { Flex } from "./flex";
 export { Grid } from "./grid";
 export { SocialIcon } from "./social-icon";
+export { Toast } from "./toast";
+export { Toaster } from "./toaster";
+export { toast, useToast } from "./use-toast";
