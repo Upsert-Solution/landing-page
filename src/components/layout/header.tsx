@@ -51,9 +51,11 @@ const Header = () => {
           ))}
         </Flex>
         <Flex className="items-center gap-3">
-          <Button size="sm" className="hidden md:inline-flex">
-            Get Started
-          </Button>
+          <Link href="/contact">
+            <Button size="sm" className="hidden md:inline-flex">
+              Get Started
+            </Button>
+          </Link>
           <Button
             type="button"
             aria-expanded={isOpen}

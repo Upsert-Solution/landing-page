@@ -5,6 +5,7 @@ import { Globe, Headset, Lightbulb, PlaneLanding, RefreshCcw, TrendingDown, Tren
 import { Button, CardContainer, Flex, Grid } from "@/src/components/ui";
 import { cn } from "@/src/lib/utils";
 import HeroSection from "./_components/hero-section";
+import Link from "next/link";
 
 type Item = {
   title: string;
@@ -141,7 +142,9 @@ const page = () => {
             <p className="max-w-2xl text-text-secondary">
               Let&apos;s build a website that not only looks incredible but actually grows your business.
             </p>
-            <Button>Start Your Project Today</Button>
+            <Link href="/contact">
+              <Button>Start Your Project Today</Button>
+            </Link>
           </Flex>
         </CardContainer>
       </Flex>

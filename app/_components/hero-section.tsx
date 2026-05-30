@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Rocket, Sparkles } from "lucide-react";
 
 import { Button, Flex } from "@/src/components/ui";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -14,7 +15,9 @@ const HeroSection = () => {
           We help businesses create modern, high-performing websites that build trust and drive real results.
         </p>
         <Flex className="items-center lg:items-start flex-col sm:flex-row gap-4">
-          <Button size="sm">Start Your Project</Button>
+          <Link href="/contact">
+            <Button size="sm">Start Your Project</Button>
+          </Link>
           <Button size="sm" variant="secondary">
             View Our Work
           </Button>

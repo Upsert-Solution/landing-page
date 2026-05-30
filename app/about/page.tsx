@@ -69,27 +69,27 @@ const coreValues: ValueCard[] = [
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Elena Rodriguez",
+    name: "Jan Dolby Aquino",
     role: "Lead Engineer",
-    initials: "ER",
+    initials: "JA",
     gradientClass: "from-brand-tertiary/40 via-brand-secondary/10 to-white",
   },
   {
-    name: "Marcus Chen",
+    name: "Giovanni Leo",
     role: "Systems Architect",
-    initials: "MC",
+    initials: "GL",
     gradientClass: "from-neutral-900/15 via-brand-primary/10 to-white",
   },
   {
-    name: "Sarah Jenkins",
+    name: "Joaquin Gabriel Caparas",
     role: "Product Designer",
-    initials: "SJ",
+    initials: "JC",
     gradientClass: "from-brand-secondary/30 via-brand-primary/10 to-white",
   },
   {
-    name: "David Park",
+    name: "Nichole Escano",
     role: "Creative Director",
-    initials: "DP",
+    initials: "NE",
     gradientClass: "from-brand-primary/20 via-brand-secondary/10 to-white",
   },
 ];
@@ -170,7 +170,7 @@ const page = () => {
           </p>
         </Flex>
 
-        <Grid cols={1} smCols={2} lgCols={4} gap="lg" className="w-full">
+        <Grid className="w-full grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member) => (
             <CardContainer key={member.name} direction="col" align="start" gap="md" className="h-full p-5">
               <div
