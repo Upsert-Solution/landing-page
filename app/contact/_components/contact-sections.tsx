@@ -7,6 +7,7 @@ import type { LucideIcon } from "lucide-react";
 import { Mail, Send } from "lucide-react";
 
 import { Button, CardContainer, Flex, Input, Select, Textarea, toast } from "@/src/components/ui";
+import { CONTACT_DEFAULT_SOURCE, contactSchema, type ContactPayload } from "@/src/lib/schemas/contact";
 import { cn } from "@/src/lib/utils";
 import { submitContact } from "../actions";
 
@@ -64,6 +65,53 @@ const FieldLabelText = ({ className, ...props }: FieldLabelTextProps) => {
   return <span className={cn("type-label text-text-muted", className)} {...props} />;
 };
 
+type ContactField = keyof Pick<ContactPayload, "firstName" | "lastName" | "email" | "topic" | "message">;
+type FieldErrors = Partial<Record<ContactField, string>>;
+
+const getErrorId = (field: ContactField) => `${field}-error`;
+
+const FieldError = ({ id, message }: { id: string; message?: string }) => {
+  if (!message) {
+    return null;
+  }
+
+  return (
+    <span id={id} className="text-xs font-medium text-(--status-error-text)">
+      {message}
+    </span>
+  );
+};
+
+const getContactPayloadFromFormData = (formData: FormData) => ({
+  firstName: formData.get("firstName"),
+  lastName: formData.get("lastName"),
+  email: formData.get("email"),
+  topic: formData.get("topic"),
+  message: formData.get("message"),
+  source: CONTACT_DEFAULT_SOURCE,
+});
+
+const buildFieldErrors = (issues: Array<{ path: (string | number)[]; message: string }>) => {
+  const nextErrors: FieldErrors = {};
+
+  issues.forEach((issue) => {
+    const field = issue.path[0];
+    if (typeof field !== "string") {
+      return;
+    }
+
+    if (field in nextErrors) {
+      return;
+    }
+
+    if (field === "firstName" || field === "lastName" || field === "email" || field === "topic" || field === "message") {
+      nextErrors[field] = issue.message;
+    }
+  });
+
+  return nextErrors;
+};
+
 export const InfoCardList = () => {
   return (
     <Flex direction="col" align="stretch" gap="lg" className="w-full">
@@ -106,11 +154,37 @@ export const InfoCardList = () => {
 
 export const ContactForm = () => {
   const [isPending, startTransition] = React.useTransition();
+  const [errors, setErrors] = React.useState<FieldErrors>({});
+
+  const handleFieldChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name } = event.currentTarget;
+    if (!name) {
+      return;
+    }
+
+    setErrors((current) => {
+      if (!(name in current)) {
+        return current;
+      }
+
+      const nextErrors = { ...current };
+      delete nextErrors[name as ContactField];
+      return nextErrors;
+    });
+  };
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const result = contactSchema.safeParse(getContactPayloadFromFormData(formData));
+
+    if (!result.success) {
+      setErrors(buildFieldErrors(result.error.issues));
+      return;
+    }
+
+    setErrors({});
 
     startTransition(async () => {
       try {
@@ -138,26 +212,65 @@ export const ContactForm = () => {
       gap="lg"
       className="w-full p-7 sm:p-8 border border-white/70 bg-[radial-gradient(120%_120%_at_100%_0%,rgba(150,216,255,0.35)_0%,rgba(235,237,255,0.7)_42%,rgba(255,255,255,0.95)_72%),radial-gradient(120%_120%_at_0%_100%,rgba(255,214,0,0.18)_0%,rgba(255,214,0,0)_55%)]"
     >
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5" noValidate>
         <div className="grid gap-4 sm:grid-cols-2">
           <FieldLabel>
             <FieldLabelText>First Name</FieldLabelText>
-            <Input name="firstName" placeholder="Jane" autoComplete="given-name" required variant="glass" />
+            <Input
+              name="firstName"
+              placeholder="Jane"
+              autoComplete="given-name"
+              required
+              variant="glass"
+              aria-invalid={Boolean(errors.firstName)}
+              aria-describedby={errors.firstName ? getErrorId("firstName") : undefined}
+              onChange={handleFieldChange}
+            />
+            <FieldError id={getErrorId("firstName")} message={errors.firstName} />
           </FieldLabel>
           <FieldLabel>
             <FieldLabelText>Last Name</FieldLabelText>
-            <Input name="lastName" placeholder="Doe" autoComplete="family-name" required variant="glass" />
+            <Input
+              name="lastName"
+              placeholder="Doe"
+              autoComplete="family-name"
+              required
+              variant="glass"
+              aria-invalid={Boolean(errors.lastName)}
+              aria-describedby={errors.lastName ? getErrorId("lastName") : undefined}
+              onChange={handleFieldChange}
+            />
+            <FieldError id={getErrorId("lastName")} message={errors.lastName} />
           </FieldLabel>
         </div>
 
         <FieldLabel>
           <FieldLabelText>Email Address</FieldLabelText>
-          <Input name="email" type="email" placeholder="jane@example.com" autoComplete="email" required variant="glass" />
+          <Input
+            name="email"
+            type="email"
+            placeholder="jane@example.com"
+            autoComplete="email"
+            required
+            variant="glass"
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? getErrorId("email") : undefined}
+            onChange={handleFieldChange}
+          />
+          <FieldError id={getErrorId("email")} message={errors.email} />
         </FieldLabel>
 
         <FieldLabel>
           <FieldLabelText>What are you looking for?</FieldLabelText>
-          <Select name="topic" required defaultValue="" variant="glass">
+          <Select
+            name="topic"
+            required
+            defaultValue=""
+            variant="glass"
+            aria-invalid={Boolean(errors.topic)}
+            aria-describedby={errors.topic ? getErrorId("topic") : undefined}
+            onChange={handleFieldChange}
+          >
             <option value="" disabled>
               Select an option...
             </option>
@@ -167,11 +280,21 @@ export const ContactForm = () => {
               </option>
             ))}
           </Select>
+          <FieldError id={getErrorId("topic")} message={errors.topic} />
         </FieldLabel>
 
         <FieldLabel>
           <FieldLabelText>Your Message</FieldLabelText>
-          <Textarea name="message" placeholder="Tell us about your project..." required variant="glass" />
+          <Textarea
+            name="message"
+            placeholder="Tell us about your project..."
+            required
+            variant="glass"
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? getErrorId("message") : undefined}
+            onChange={handleFieldChange}
+          />
+          <FieldError id={getErrorId("message")} message={errors.message} />
         </FieldLabel>
 
         <Button type="submit" size="sm" className="gap-2 self-start" disabled={isPending}>
