@@ -16,7 +16,7 @@ const page = () => {
             Let&apos;s Build Something Together.
           </h1>
           <p className="type-body-lg text-text-secondary max-w-2xl">
-            Ready to make waves? Reach out and let&apos;s start crafting your next big idea. We&apos;re all ears and always buoyant.
+            Ready to upsert? Reach out and let&apos;s start crafting your next big idea. We&apos;re all ears and always buoyant.
           </p>
         </Flex>
       </FadeInSection>
