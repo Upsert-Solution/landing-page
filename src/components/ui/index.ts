@@ -9,3 +9,4 @@ export { SocialIcon } from "./social-icon";
 export { Toast } from "./toast";
 export { Toaster } from "./toaster";
 export { toast, useToast } from "./use-toast";
+export { FadeIn, FadeInSection, Stagger, StaggerItem } from "./motion";

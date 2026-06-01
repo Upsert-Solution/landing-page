@@ -4,6 +4,7 @@ import "./globals.css";
 import { fontBody, fontDisplay } from "@/src/lib/fonts";
 import { Footer, Header, ScrollToTop } from "@/src/components/layout";
 import { Toaster } from "@/src/components/ui";
+import LenisProvider from "@/src/components/providers/lenis-provider";
 
 export const metadata: Metadata = {
   title: "Upsert Solution",
@@ -93,7 +94,9 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <Header />
         <ScrollToTop />
-        <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-340 mx-auto flex-1 w-full">{children}</main>
+        <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-340 mx-auto flex-1 w-full">
+          <LenisProvider>{children}</LenisProvider>
+        </main>
         <Footer />
         <Toaster />
       </body>

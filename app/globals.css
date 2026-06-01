@@ -315,6 +315,10 @@ body {
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--text-primary);
@@ -628,6 +632,10 @@ a {
   .theme-transition,
   .theme-transition * {
     transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }
 

@@ -1,4 +1,4 @@
-import { Flex, Grid } from "@/src/components/ui";
+import { FadeInSection, Flex, Stagger, StaggerItem } from "@/src/components/ui";
 import { ContactForm, InfoCardList } from "./_components/contact-sections";
 
 const page = () => {
@@ -10,19 +10,27 @@ const page = () => {
         className="pointer-events-none absolute -bottom-24 right-6 h-96 w-96 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] bg-brand-tertiary/15 blur-3xl"
       />
 
-      <Flex as="section" direction="col" align="center" className="text-center gap-4 pt-6 lg:pt-10">
-        <h1 className="type-h1 text-balance bg-linear-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent">
-          Let&apos;s Build Something Together.
-        </h1>
-        <p className="type-body-lg text-text-secondary max-w-2xl">
-          Ready to make waves? Reach out and let&apos;s start crafting your next big idea. We&apos;re all ears and always buoyant.
-        </p>
-      </Flex>
+      <FadeInSection className="pt-6 lg:pt-10">
+        <Flex as="div" direction="col" align="center" className="text-center gap-4">
+          <h1 className="type-h1 text-balance bg-linear-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent">
+            Let&apos;s Build Something Together.
+          </h1>
+          <p className="type-body-lg text-text-secondary max-w-2xl">
+            Ready to make waves? Reach out and let&apos;s start crafting your next big idea. We&apos;re all ears and always buoyant.
+          </p>
+        </Flex>
+      </FadeInSection>
 
-      <Grid as="section" cols={1} mdCols={2} gap="xl" className="items-start">
-        <InfoCardList />
-        <ContactForm />
-      </Grid>
+      <FadeInSection>
+        <Stagger className="grid items-start gap-6 md:grid-cols-2">
+          <StaggerItem>
+            <InfoCardList />
+          </StaggerItem>
+          <StaggerItem>
+            <ContactForm />
+          </StaggerItem>
+        </Stagger>
+      </FadeInSection>
     </div>
   );
 };

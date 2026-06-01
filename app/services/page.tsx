@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import { CheckCircle2, LifeBuoy, Monitor, RefreshCcw, Rocket } from "lucide-react";
 
-import { CardContainer, Flex, Grid } from "@/src/components/ui";
+import { CardContainer, FadeInSection, Flex, Stagger, StaggerItem } from "@/src/components/ui";
 import { cn } from "@/src/lib/utils";
 
 type Service = {
@@ -65,46 +65,54 @@ const page = () => {
         className="pointer-events-none absolute top-64 -right-12 h-80 w-80 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] bg-brand-primary/15 blur-3xl"
       />
 
-      <Flex as="section" direction="col" align="center" className="text-center gap-4 pt-6 lg:pt-10">
-        <h1 className="type-h1 bg-linear-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent">Our Services</h1>
-        <p className="type-body-lg text-text-secondary max-w-2xl">
-          We build digital experiences that float above the rest. From concept to launch, we deliver bubbly, high-energy solutions tailored for modern
-          brands.
-        </p>
-      </Flex>
+      <FadeInSection className="pt-6 lg:pt-10">
+        <Flex as="div" direction="col" align="center" className="text-center gap-4">
+          <h1 className="type-h1 bg-linear-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent">
+            Our Services
+          </h1>
+          <p className="type-body-lg text-text-secondary max-w-2xl">
+            We build digital experiences that float above the rest. From concept to launch, we deliver bubbly, high-energy solutions tailored for
+            modern brands.
+          </p>
+        </Flex>
+      </FadeInSection>
 
-      <Grid as="section" cols={1} mdCols={2} gap="xl" className="relative">
-        {services.map((service) => {
-          const Icon = service.icon;
+      <FadeInSection className="relative">
+        <Stagger className="grid gap-6 md:grid-cols-2">
+          {services.map((service) => {
+            const Icon = service.icon;
 
-          return (
-            <CardContainer key={service.title} direction="col" align="start" gap="md" className="relative overflow-hidden p-8">
-              <span aria-hidden="true" className={cn("pointer-events-none absolute h-28 w-28 rounded-full", service.cornerClass)} />
-              <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-surface-1">
-                {service.image ? (
-                  <Image src={service.image} alt={service.imageAlt ?? service.title} fill sizes="48px" className="object-cover" />
-                ) : (
-                  <span className={cn("flex h-12 w-12 items-center justify-center rounded-full", service.iconClass)}>
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                )}
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold">{service.title}</h3>
-                <p className="text-text-muted leading-relaxed">{service.description}</p>
-              </div>
-              <ul className="mt-1 space-y-2 text-sm text-text-secondary">
-                {service.bullets.map((bullet) => (
-                  <li key={bullet} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-brand-primary" aria-hidden="true" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContainer>
-          );
-        })}
-      </Grid>
+            return (
+              <StaggerItem key={service.title} className="h-full">
+                <CardContainer direction="col" align="start" gap="md" className="relative h-full overflow-hidden p-8">
+                  <span aria-hidden="true" className={cn("pointer-events-none absolute h-28 w-28 rounded-full", service.cornerClass)} />
+                  <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-surface-1">
+                    {service.image ? (
+                      <Image src={service.image} alt={service.imageAlt ?? service.title} fill sizes="48px" className="object-cover" />
+                    ) : (
+                      <span className={cn("flex h-12 w-12 items-center justify-center rounded-full", service.iconClass)}>
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                    )}
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold">{service.title}</h3>
+                    <p className="text-text-muted leading-relaxed">{service.description}</p>
+                  </div>
+                  <ul className="mt-1 space-y-2 text-sm text-text-secondary">
+                    {service.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-brand-primary" aria-hidden="true" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContainer>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
+      </FadeInSection>
     </div>
   );
 };
