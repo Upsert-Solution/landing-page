@@ -56,7 +56,7 @@ const Footer = () => {
 
   return (
     <Flex as="footer" className="bg-bg-muted w-full mt-10">
-      <Flex className="max-w-400 mx-auto w-full px-4 sm:px-6 lg:px-8 pt-10 pb-7">
+      <Flex className="max-w-340 mx-auto w-full px-4 sm:px-6 lg:px-8 pt-10 pb-7">
         <Flex className="w-full flex-col gap-8">
           <Flex className="w-full flex-col items-start gap-8 md:flex-row md:items-start">
             {/* Info */}

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/src/lib/utils";
 import { Button, Flex } from "../ui";
 import { useState } from "react";
+import Image from "next/image";
 
 type Item = {
   name: string;
@@ -34,14 +35,15 @@ const Header = () => {
   return (
     <Flex
       as="header"
-      className="fixed top-5 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-full border border-neutral-50 bg-bg/50  px-5 py-3 shadow-[0_0_1000px_rgba(46,91,255,0.7)] backdrop-blur-[20px] md:w-[calc(100%-3rem)] lg:w-[calc(100%-4rem)] max-w-400"
+      className="fixed top-5 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-full border border-neutral-50 bg-bg/50  px-5 py-3 shadow-[0_0_1000px_rgba(46,91,255,0.7)] backdrop-blur-[20px] md:w-[calc(100%-3rem)] lg:w-[calc(100%-4rem)] max-w-340"
     >
       <Flex className="w-full items-center justify-between gap-4">
         <Link
-          className="font-bold text-brand-primary tracking-[-0.02em] cursor-pointer hover:opacity-70 transition-all duration-200 ease-linear"
+          className="flex items-center gap-2 font-bold text-brand-primary tracking-[-0.02em] cursor-pointer hover:opacity-70 transition-all duration-200 ease-linear"
           href="/"
         >
-          Upsert Solution
+          <Image src="/favicon.ico" width={24} height={24} alt="Logo" />
+          <p>Upsert Solution</p>
         </Link>
         <Flex className="mx-auto hidden md:flex items-center" gap="sm">
           {navItems.map((item) => (
@@ -51,9 +53,11 @@ const Header = () => {
           ))}
         </Flex>
         <Flex className="items-center gap-3">
-          <Button size="sm" className="hidden md:inline-flex">
-            Get Started
-          </Button>
+          <Link href="/contact">
+            <Button size="sm" className="hidden md:inline-flex">
+              Get Started
+            </Button>
+          </Link>
           <Button
             type="button"
             aria-expanded={isOpen}
@@ -102,9 +106,11 @@ const Header = () => {
               {item.name}
             </Link>
           ))}
-          <Button size="sm" className="w-full" onClick={() => setOpenForPath(null)}>
-            Get Started
-          </Button>
+          <Link href="/contact">
+            <Button size="sm" className="w-full" onClick={() => setOpenForPath(null)}>
+              Get Started
+            </Button>
+          </Link>
         </Flex>
       </div>
     </Flex>

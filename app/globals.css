@@ -315,6 +315,10 @@ body {
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--text-primary);
@@ -616,130 +620,6 @@ a {
 }
 
 /* =========================================================
-   Buttons
-   ========================================================= */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--btn-border, transparent);
-  background-color: var(--btn-bg, transparent);
-  color: var(--btn-fg, var(--text-primary));
-  font-weight: 600;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: var(--btn-shadow, none);
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 120ms ease;
-}
-
-.btn:hover:not(:disabled):not(.is-disabled) {
-  background-color: var(--btn-bg-hover, var(--btn-bg));
-}
-
-.btn:active:not(:disabled):not(.is-disabled) {
-  background-color: var(--btn-bg-active, var(--btn-bg-hover, var(--btn-bg)));
-  transform: translateY(1px);
-}
-
-.btn:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-
-.btn:disabled,
-.btn.is-disabled {
-  background-color: var(--action-disabled-bg);
-  color: var(--action-disabled-fg);
-  border-color: var(--action-disabled-border);
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
-}
-
-.btn-primary {
-  --btn-bg: var(--action-primary-bg);
-  --btn-bg-hover: var(--action-primary-bg-hover);
-  --btn-bg-active: var(--action-primary-bg-active);
-  --btn-fg: var(--action-primary-fg);
-  --btn-border: var(--action-primary-border);
-  --btn-shadow: var(--action-primary-shadow);
-}
-
-.btn-secondary {
-  --btn-bg: var(--action-secondary-bg);
-  --btn-bg-hover: var(--action-secondary-bg-hover);
-  --btn-bg-active: var(--action-secondary-bg-active);
-  --btn-fg: var(--action-secondary-fg);
-  --btn-border: var(--action-secondary-border);
-}
-
-.btn-ghost {
-  --btn-bg: var(--action-ghost-bg);
-  --btn-bg-hover: var(--action-ghost-bg-hover);
-  --btn-bg-active: var(--action-ghost-bg-active);
-  --btn-fg: var(--action-ghost-fg);
-  --btn-border: var(--action-ghost-border);
-}
-
-.btn-outline {
-  --btn-bg: transparent;
-  --btn-bg-hover: var(--surface-hover);
-  --btn-bg-active: var(--surface-active);
-  --btn-fg: var(--text-primary);
-  --btn-border: var(--border-strong);
-}
-
-/* =========================================================
-   Cards / Surfaces
-   ========================================================= */
-
-.card {
-  background-color: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-elevation-1);
-  padding: 24px;
-}
-
-.card-elevated {
-  box-shadow: var(--shadow-elevation-2);
-}
-
-.card-inset {
-  background-color: var(--surface-inset);
-  border-color: var(--border-muted);
-  box-shadow: none;
-}
-
-.surface {
-  background-color: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-}
-
-.surface-hoverable {
-  transition: var(--transition-theme);
-}
-
-.surface-hoverable:hover {
-  background-color: var(--surface-hover);
-  border-color: var(--border-strong);
-}
-
-.surface-hoverable:active {
-  background-color: var(--surface-active);
-}
-
-/* =========================================================
    Theme Transition
    ========================================================= */
 
@@ -752,5 +632,19 @@ a {
   .theme-transition,
   .theme-transition * {
     transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
