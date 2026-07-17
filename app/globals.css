@@ -648,3 +648,29 @@ a {
     transform: translateY(-10px);
   }
 }
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 31s linear infinite;
+}
+
+@media (max-width: 639px) {
+  .animate-marquee {
+    animation-duration: 36s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
