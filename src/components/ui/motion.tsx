@@ -56,6 +56,7 @@ export const FadeIn = ({ className, delay = 0, children, ...props }: FadeInProps
 
 export const FadeInSection = ({ className, delay = 0, children, ...props }: FadeInSectionProps) => {
   const { prefersReducedMotion, variants } = useFadeConfig(delay);
+  const sectionClassName = cn(className, props.id ? "scroll-mt-[120px]" : undefined);
 
   return (
     <motion.section
@@ -63,7 +64,7 @@ export const FadeInSection = ({ className, delay = 0, children, ...props }: Fade
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
       variants={variants}
-      className={cn(className)}
+      className={sectionClassName}
       {...props}
     >
       {children}
