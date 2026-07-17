@@ -1,6 +1,7 @@
 import type { ComponentType, SVGProps } from "react";
 
 import {
+  ArrowUpRight,
   Globe,
   Headset,
   Lightbulb,
@@ -20,6 +21,7 @@ import {
 } from "@/src/components/ui";
 import { cn } from "@/src/lib/utils";
 import HeroSection from "./_components/hero-section";
+import ProjectPreview from "./_components/project-preview";
 import Link from "next/link";
 
 type Item = {
@@ -27,6 +29,14 @@ type Item = {
   icon: ComponentType<SVGProps<SVGSVGElement>> | string;
   description?: string;
   iconClass?: string;
+};
+
+type Project = {
+  title: string;
+  description: string;
+  url: string;
+  fallbackImage: string;
+  accentClass: string;
 };
 
 const stepProcessData: Item[] = [
@@ -146,6 +156,37 @@ const toolsOfTheTrade: Item[] = [
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
     iconClass: "bg-neutral-200 text-neutral-900",
   },
+  {
+    title: "GCP",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg",
+    iconClass: "bg-blue-100 text-blue-600",
+  },
+];
+
+const recentProjects: Project[] = [
+  {
+    title: "Employra AI Career Intelligence",
+    description:
+      "A cutting-edge AI-driven platform that revolutionizes career development and job search strategies.",
+    url: "https://employra.vercel.app/",
+    fallbackImage: "/projects/employra.png",
+    accentClass: "bg-brand-primary/10",
+  },
+  {
+    title: "Money Trees Network",
+    description:
+      "Simple guides on saving money, budgeting, freelancing, VA work, and earning online responsibly.",
+    url: "https://www.moneytreesnetwork.com/",
+    fallbackImage: "/projects/money-trees-network.png",
+    accentClass: "bg-brand-secondary/10",
+  },
+  {
+    title: "TrackerTree",
+    description:"Plan projects and routines, track goal costs, and come back to the right next step after interruptions.",
+    url: "https://www.trackertree.com/",
+    fallbackImage: "/projects/trackertree.png",
+    accentClass: "bg-brand-tertiary/10",
+  }
 ];
 
 const page = () => {
@@ -256,7 +297,7 @@ const page = () => {
           </Stagger>
         </Flex>
       </FadeInSection>
-      
+
       <FadeInSection className="py-6 lg:py-12">
         <Flex as="div" className="flex-col gap-12 lg:gap-16">
           <Flex className="text-center flex-col items-center gap-3 max-w-2xl mx-auto">
@@ -266,46 +307,109 @@ const page = () => {
             </p>
           </Flex>
 
-          <div className="relative w-full overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-            <Stagger className="flex w-max animate-marquee gap-6 lg:gap-8 hover:[animation-play-state:paused]">
+          <div className="relative w-full overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+            <div className="flex w-max animate-marquee gap-4 sm:gap-6 lg:gap-8 hover:[animation-play-state:paused]">
               {[...toolsOfTheTrade, ...toolsOfTheTrade].map((tool, i) => {
                 const Icon = tool.icon;
 
                 return (
-                  <StaggerItem key={`${tool.title}-${i}`}>
-                    <CardContainer
-                      direction="col"
-                      align="center"
-                      gap="md"
-                      elevated
-                      className="w-44 sm:w-44 shrink-0 items-center text-center py-8 px-6 rounded-3xl"
+                  <CardContainer
+                    key={`${tool.title}-${i}`}
+                    direction="col"
+                    align="center"
+                    gap="xs"
+                    elevated
+                    className="w-28 sm:w-36 lg:w-44 shrink-0 items-center text-center py-5 px-3 sm:py-6 sm:px-4 lg:py-8 lg:px-6 rounded-2xl lg:rounded-3xl"
+                  >
+                    <span
+                      className={cn(
+                        "flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-16 shrink-0 items-center justify-center rounded-full",
+                        tool.iconClass,
+                      )}
                     >
-                      <span
-                        className={cn(
-                          "flex h-14 w-16 shrink-0 items-center justify-center rounded-full",
-                          tool.iconClass,
-                        )}
-                      >
-                        {typeof Icon === "string" ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={Icon}
-                            className="h-8 w-8"
-                            alt={tool.title}
-                          />
-                        ) : (
-                          <Icon className="h-8 w-8" aria-hidden="true" />
-                        )}
-                      </span>
-                      <p className="text-base font-bold text-text-primary">
-                        {tool.title}
-                      </p>
-                    </CardContainer>
-                  </StaggerItem>
+                      {typeof Icon === "string" ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={Icon}
+                          className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8"
+                          alt={tool.title}
+                        />
+                      ) : (
+                        <Icon
+                          className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </span>
+                    <p className="text-xs sm:text-sm lg:text-base font-bold text-text-primary leading-tight">
+                      {tool.title}
+                    </p>
+                  </CardContainer>
                 );
               })}
-            </Stagger>
+            </div>
           </div>
+        </Flex>
+      </FadeInSection>
+
+      <FadeInSection className="py-6 lg:py-12">
+        <Flex as="div" align="stretch" className="flex-col gap-12 lg:gap-16">
+          <Flex className="flex-col items-center text-center gap-6 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:gap-6 flex-wrap">
+            <Flex className="flex-col items-center sm:items-start gap-3">
+              <h2>Recent Splashes</h2>
+              <p className="text-text-secondary">
+                A look at some of our favorite creative collaborations.
+              </p>
+            </Flex>
+            <Link href="/projects">
+              <Button
+                variant="secondary"
+                className="border-2 border-brand-secondary text-text-primary font-bold px-6 py-3 text-base rounded-full whitespace-nowrap"
+              >
+                View All Projects
+              </Button>
+            </Link>
+          </Flex>
+
+          <Stagger className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {recentProjects.slice(0, 3).map((project) => (
+              <StaggerItem key={project.title}>
+                <Link
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block h-full"
+                >
+                  <CardContainer
+                    direction="col"
+                    align="start"
+                    gap="none"
+                    elevated
+                    className="h-full overflow-hidden p-0 rounded-3xl transition-transform duration-300 group-hover:-translate-y-1"
+                  >
+                    <ProjectPreview
+                      url={project.url}
+                      fallbackImage={project.fallbackImage}
+                      title={project.title}
+                      accentClass={project.accentClass}
+                    />
+                    <Flex className="flex-col items-start gap-2 p-6">
+                      <Flex className="w-full items-center justify-between gap-2">
+                        <h4>{project.title}</h4>
+                        <ArrowUpRight
+                          className="h-4 w-4 shrink-0 text-text-muted transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-primary"
+                          aria-hidden="true"
+                        />
+                      </Flex>
+                      <p className="text-text-muted leading-relaxed">
+                        {project.description}
+                      </p>
+                    </Flex>
+                  </CardContainer>
+                </Link>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </Flex>
       </FadeInSection>
 
