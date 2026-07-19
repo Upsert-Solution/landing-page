@@ -5,7 +5,6 @@ import {
   Database,
   Settings2,
   Share2,
-  Cookie,
   Clock,
   SlidersHorizontal,
   ExternalLink,
@@ -20,7 +19,6 @@ const sections = [
   { id: "information-we-collect", label: "Information We Collect", icon: Database },
   { id: "how-we-use-information", label: "How We Use Information", icon: Settings2 },
   { id: "information-sharing", label: "Information Sharing", icon: Share2 },
-  { id: "cookies", label: "Cookies and Similar Tools", icon: Cookie },
   { id: "data-retention", label: "Data Retention", icon: Clock },
   { id: "your-choices", label: "Your Choices", icon: SlidersHorizontal },
   { id: "third-party-services", label: "Third-Party Services", icon: ExternalLink },
@@ -232,25 +230,6 @@ const page = () => {
             </SectionCard>
 
             <SectionCard
-              id="cookies"
-              title="Cookies and Similar Tools"
-              icon={sections[4].icon}
-              colorClass={iconBubbleColors[0]}
-            >
-              <p className="relative z-10 body-lg text-doc-text-muted">
-                The website may use cookies or similar technologies to support site functionality, remember preferences,
-                measure performance, and understand visitor behavior.
-              </p>
-              <p className="relative z-10 body-lg text-doc-text-muted">
-                Please review our{" "}
-                <Link href="/cookies" className="text-doc-primary underline underline-offset-2 hover:text-accent-cyan-fg">
-                  Cookie Policy
-                </Link>{" "}
-                for more details.
-              </p>
-            </SectionCard>
-
-            <SectionCard
               id="data-retention"
               title="Data Retention"
               icon={sections[5].icon}
@@ -272,8 +251,7 @@ const page = () => {
               <BulletList
                 items={[
                   "You may unsubscribe from email communications at any time.",
-                  "You may request correction or deletion of information you submitted, where appropriate.",
-                  "You may manage cookies through your browser settings.",
+                  "You may request correction or deletion of information you submitted, where appropriate."
                 ]}
               />
             </SectionCard>
@@ -294,7 +272,7 @@ const page = () => {
             <SectionCard
               id="changes"
               title="Changes to This Policy"
-              icon={sections[8].icon}
+              icon={sections[7].icon}
               colorClass={iconBubbleColors[0]}
             >
               <p className="relative z-10 body-lg text-doc-text-muted">
