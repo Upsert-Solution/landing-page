@@ -22,6 +22,8 @@ import {
 import { cn } from "@/src/lib/utils";
 import HeroSection from "./_components/hero-section";
 import ProjectPreview from "./_components/project-preview";
+import TestimonialsSection from "./_components/testimonials-section";
+
 import Link from "next/link";
 
 type Item = {
@@ -182,11 +184,12 @@ const recentProjects: Project[] = [
   },
   {
     title: "TrackerTree",
-    description:"Plan projects and routines, track goal costs, and come back to the right next step after interruptions.",
+    description:
+      "Plan projects and routines, track goal costs, and come back to the right next step after interruptions.",
     url: "https://www.trackertree.com/",
     fallbackImage: "/projects/trackertree.png",
     accentClass: "bg-brand-tertiary/10",
-  }
+  },
 ];
 
 const page = () => {
@@ -411,6 +414,10 @@ const page = () => {
             ))}
           </Stagger>
         </Flex>
+      </FadeInSection>
+
+      <FadeInSection className="py-6 lg:py-12">
+        <TestimonialsSection />
       </FadeInSection>
 
       <FadeInSection className="py-12 lg:py-20">
