@@ -25,6 +25,7 @@ const quickLinks: FooterLink[] = [
 const companyLinks: FooterLink[] = [
   { name: "Terms & Conditions", href: "/terms" },
   { name: "Privacy Policy", href: "/privacy" },
+   { name: "Cookie Policy", href: "/cookie" },
 ];
 
 const socialLinks: SocialLink[] = [
