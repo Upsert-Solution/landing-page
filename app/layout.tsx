@@ -90,15 +90,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fontBody.variable} ${fontDisplay.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${fontBody.variable} ${fontDisplay.variable} h-full antialiased`}
+    >
       <body className="min-h-screen flex flex-col">
-        <Header />
-        <ScrollToTop />
-        <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-340 mx-auto flex-1 w-full">
-          <LenisProvider>{children}</LenisProvider>
-        </main>
-        <Footer />
-        <Toaster />
+        <LenisProvider>
+          <Header />
+          <ScrollToTop />
+          <main className="px-4 sm:px-6 lg:px-8 pt-25 max-w-340 mx-auto flex-1 w-full">
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
+        </LenisProvider>
       </body>
     </html>
   );

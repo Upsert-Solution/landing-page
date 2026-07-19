@@ -1,8 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
+
+type LenisRefValue = React.RefObject<Lenis | null>;
+
+const LenisContext = createContext<LenisRefValue | null>(null);
+
+export const useLenisRef = () => {
+  const context = useContext(LenisContext);
+  if (!context) {
+    throw new Error("useLenisRef must be used within LenisProvider");
+  }
+  return context;
+};
 
 const LenisProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -10,7 +22,7 @@ const LenisProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,
       smoothWheel: true,
     });
 
@@ -25,8 +37,18 @@ const LenisProvider = ({ children }: { children: React.ReactNode }) => {
 
     rafId = requestAnimationFrame(raf);
 
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+    });
+    resizeObserver.observe(document.body);
+
+    const handleLoad = () => lenis.resize();
+    window.addEventListener("load", handleLoad);
+
     return () => {
       cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
+      window.removeEventListener("load", handleLoad);
       lenis.destroy();
       lenisRef.current = null;
     };
@@ -36,7 +58,7 @@ const LenisProvider = ({ children }: { children: React.ReactNode }) => {
     lenisRef.current?.scrollTo(0, { immediate: true });
   }, [pathname]);
 
-  return <>{children}</>;
+  return <LenisContext.Provider value={lenisRef}>{children}</LenisContext.Provider>;
 };
 
 export default LenisProvider;
