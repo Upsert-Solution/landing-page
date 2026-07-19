@@ -123,30 +123,52 @@
   --focus-ring: 0 0 0 3px rgba(46, 91, 255, 0.35);
 
   --doc-bg: #fbf8ff;
---doc-text: #191b24;
---doc-text-muted: #434656;
---doc-border: #c4c5d9;
---doc-primary: #0040e0;
---doc-primary-container: var(--brand-primary); 
---doc-on-primary-container: #efefff;
---doc-primary-fixed-dim: #b8c3ff;
---doc-secondary-fixed: #b7eaff;
---doc-surface-container: #ededfa;
---doc-surface-container-low: #f3f2ff;
---doc-outline: #747688;
+  --doc-text: #191b24;
+  --doc-text-muted: #434656;
+  --doc-border: #c4c5d9;
+  --doc-primary: #0040e0;
+  --doc-primary-container: var(--brand-primary); 
+  --doc-on-primary-container: #efefff;
+  --doc-primary-fixed-dim: #b8c3ff;
+  --doc-secondary-fixed: #b7eaff;
+  --doc-surface-container: #ededfa;
+  --doc-surface-container-low: #f3f2ff;
+  --doc-outline: #747688;
 
---accent-cyan: #00ccf9;
---accent-cyan-fg: #005266;
---accent-gold: #caa900;
---accent-gold-fg: #4c3f00;
---accent-coral: #ffdad6;
---accent-coral-fg: #93000a;
---accent-indigo: #dde1ff;
---accent-indigo-fg: #001356;
+  --accent-cyan: #00ccf9;
+  --accent-cyan-fg: #005266;
+  --accent-gold: #caa900;
+  --accent-gold-fg: #4c3f00;
+  --accent-coral: #ffdad6;
+  --accent-coral-fg: #93000a;
+  --accent-indigo: #dde1ff;
+  --accent-indigo-fg: #001356;
 
---shadow-doc-card: 0 20px 40px rgba(46, 91, 255, 0.08);
---shadow-doc-card-hover: 0 30px 60px rgba(46, 91, 255, 0.12);
---shadow-doc-hero: 0 20px 40px rgba(46, 91, 255, 0.15);
+  --doc-text: #191b24;
+  --doc-text-muted: #434656;
+  --doc-border: #c4c5d9;
+  --doc-primary: #0040e0;
+  --doc-primary-container: var(--brand-primary); 
+  --doc-on-primary-container: #efefff;
+  --doc-primary-fixed-dim: #b8c3ff;
+  --doc-secondary-fixed: #b7eaff;
+  --doc-surface-container: #ededfa;
+  --doc-surface-container-low: #f3f2ff;
+  --doc-outline: #747688;
+
+  --accent-cyan: #00ccf9;
+  --accent-cyan-fg: #005266;
+  --accent-gold: #caa900;
+  --accent-gold-fg: #4c3f00;
+  --accent-coral: #ffdad6;
+  --accent-coral-fg: #93000a;
+  --accent-indigo: #dde1ff;
+  --accent-indigo-fg: #001356;
+
+  --shadow-doc-card: 0 20px 40px rgba(46, 91, 255, 0.15);
+  --shadow-doc-card-hover: 0 30px 60px rgba(46, 91, 255, 0.2);
+  --shadow-doc-hero: 0 20px 40px rgba(46, 91, 255, 0.15);
+  --shadow-doc-glow: 0 8px 24px rgba(46, 91, 255, 0.3);
 
   /* Radii */
   --radius-sm: 8px;

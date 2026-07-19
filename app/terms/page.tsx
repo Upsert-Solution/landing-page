@@ -44,7 +44,7 @@ const NumberedHeading = ({ number, children }: { number: number; children: React
 
 const page = () => {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-doc-bg text-doc-text">
+    <div className="relative min-h-screen overflow-x-hidden bg-doc-bg text-doc-text">
       {/* background blobs */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div
@@ -59,14 +59,15 @@ const page = () => {
 
       <main className="relative z-10 flex-1 w-full max-w-[1200px] mx-auto px-6 md:px-10 py-12 flex flex-col lg:flex-row gap-8">
         {/* Sidebar */}
-        <aside className="hidden lg:block w-72 shrink-0">
+        <aside className="hidden lg:block w-72 shrink-0 self-start">
           <CardContainer
             as="div"
             direction="col"
             align="start"
             gap="md"
             className={cn(
-              "sticky top-[100px] w-full rounded-[1.5rem] p-8",
+              "lg:sticky lg:top-24 z-20 w-full rounded-[1.5rem] p-8",
+              "max-h-[calc(100vh-6rem)] overflow-auto",
               "bg-doc-bg/90 backdrop-blur-md",
               "border border-doc-border/30",
               "shadow-doc-card",
