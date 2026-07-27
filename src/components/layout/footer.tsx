@@ -23,8 +23,8 @@ const quickLinks: FooterLink[] = [
 ];
 
 const companyLinks: FooterLink[] = [
+  { name: "Terms & Conditions", href: "/terms" },
   { name: "Privacy Policy", href: "/privacy" },
-  { name: "Data Privacy", href: "/data-privacy" },
 ];
 
 const socialLinks: SocialLink[] = [
